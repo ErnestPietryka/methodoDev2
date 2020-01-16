@@ -1,10 +1,10 @@
-<div class="row">
-    <div class="col-md-4 col-md-offset-4">
-        <h1>Sign In</h1>
-        {{#if hasErrors}}
+<div class="d-flex justify-content-center">
+    <div class="col-md-4.col-md-offset-4">
+        <h1>Connexion</h1>
+               {{#if hasErrors }}
             <div class="alert alert-danger">
-                {{# each messages }}
-                    <p>{{this}}</p>
+                {{#each messages}}
+                    <p>{{ this }}</p>
                 {{/each}}
             </div>
         {{/if}}
@@ -14,12 +14,12 @@
                 <input type="text" id="email" name="email" class="form-control">
             </div>
             <div class="form-group">
-                <label for="password">Password</label>
+                <label for="password">Mot de passe</label>
                 <input type="password" id="password" name="password" class="form-control">
             </div>
-            <input type="hidden" name="_csrf" value="{{ csrfToken }}">
-            <button type="submit" class="btn btn-primary">Sign In</button>
+            <input type="hidden" name="_csrf" value="{{csrfToken}}">
+            <button type="submit" class="btn btn-primary">Connexion</button>
         </form>
-        <p>Don't have an account? <a href="/user/signup">Sign up instead!</a></p>
+        <p>Pas encore de compte ? <a href="/user/signup">Inscrivez vous ici !</a></p>
     </div>
 </div>

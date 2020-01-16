@@ -17,8 +17,8 @@ passport.use('local.signup', new LocalStrategy({
     passwordField: 'password',
     passReqToCallback: true
 }, function (req, email, password, done) {
-    req.checkBody('email', 'Invalid email').notEmpty().isEmail();
-    req.checkBody('password', 'Invalid password').notEmpty().isLength({min:4});
+    req.checkBody('email', 'email incorrecte').notEmpty().isEmail();
+    req.checkBody('password', 'Le mot de passe doit faire plus de 4 characters').notEmpty().isLength({min:4});
     var errors = req.validationErrors();
     if (errors) {
         var messages = [];
@@ -32,7 +32,7 @@ passport.use('local.signup', new LocalStrategy({
             return done(err);
         }
         if (user) {
-            return done(null, false, {message: 'Email is already in use.'});
+            return done(null, false, {message: 'Cette adresse est déjà utilisé !'});
         }
         var newUser = new User();
         newUser.email = email;
@@ -51,8 +51,8 @@ passport.use('local.signin', new LocalStrategy({
     passwordField: 'password',
     passReqToCallback: true
 }, function(req, email, password, done) {
-    req.checkBody('email', 'Invalid email').notEmpty().isEmail();
-    req.checkBody('password', 'Invalid password').notEmpty();
+    req.checkBody('email', 'email incorrecte').notEmpty().isEmail();
+    req.checkBody('password', 'Mot de passe incorrect').notEmpty();
     var errors = req.validationErrors();
     if (errors) {
         var messages = [];
@@ -66,10 +66,10 @@ passport.use('local.signin', new LocalStrategy({
             return done(err);
         }
         if (!user) {
-            return done(null, false, {message: 'No user found.'});
+            return done(null, false, {message: 'Utilisateur inconue.'});
         }
         if (!user.validPassword(password)) {
-            return done(null, false, {message: 'Wrong password.'});
+            return done(null, false, {message: 'Mot de passe incorrect.'});
         }
         return done(null, user);
     });
