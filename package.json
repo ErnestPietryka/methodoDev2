@@ -27,6 +27,6 @@
   },
   "devDependencies": {
     "eslint-plugin-compat": "^3.3.0",
-    "handlebars": "^4.5.0"
+    "handlebars": "^4.5.3"
   }
 }
